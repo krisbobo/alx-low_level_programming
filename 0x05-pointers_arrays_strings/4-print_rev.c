@@ -9,19 +9,19 @@
 void rev_string(char *s)
 {
 	int i = 0;
-	int swapper = 0;
-	char str;
+	int aux = 0;
+	char ltemp;
 
 	while (*(s + i) != '\0')
-		i++;
-	i--;
+		i += 1;
+	i -= 1;
 
-	while (str < i)
+	while (aux < i)
 	{
-		str = s[i];
-		s[i] = s[swapper];
-		s[swapper] = str;
-		swapper++;
+		ltemp = s[i];
+		s[i] = s[aux];
+		s[aux] = ltemp;
+		aux++;
 		i--;
 	}
 }
