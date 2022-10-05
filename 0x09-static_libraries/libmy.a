@@ -1,0 +1,3 @@
+#!/bin/bash
+ar rc libmy.a main.h
+ranlib libmy.a
