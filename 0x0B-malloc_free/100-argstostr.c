@@ -1,45 +1,49 @@
 #include <stdlib.h>
 
 /**
- * argstostr - concatenates all the arguments of your program
- * @ac: argument count
- * @av: argument vector
- * Return: char
- */
+ * argstostr - a function that concatenates
+ *             all the arguments
+ *
+ * @ac: argument counter
+ * @av: argument holder
+ *
+ * Return: a pointer to a new string
+ *         or NULL if it fails
+*/
 
 char *argstostr(int ac, char **av)
 {
-	char *ar, *str;
-	int i, j, cont;
+	int i, j, k, length;
+	char *str;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
+
+	/*find length of vector + '\0' which makes it a 2d array*/
+	length = 0;
 	for (i = 0; i < ac; i++)
 	{
-		j = 0;
-		while (av[i][j] != '\0')
-		{
-			j++;
-			cont++;
-		}
-		cont++;
+		for (j = 0; av[i][j] != '\0'; j++)
+			length++;
+		length++;
 	}
-	cont += 1;
-	ar = malloc(cont * sizeof(char));
-	if (ar == NULL)
+
+	str = malloc((length + 1) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	str = ar;
+
+	k = 0;
 	for (i = 0; i < ac; i++)
 	{
-		j = 0;
-		while (av[i][j] != '\0')
+		for (j = 0; av[i][j] != '\0'; j++)
 		{
-			*ar = av[i][j];
-			j++;
-			ar++;
+			str[k] = av[i][j];
+			k++;
 		}
-		*ar = '\n';
-		ar++;
+		str[k] = '\n';
+		k++;
 	}
+	str[k] = '\0';
+
 	return (str);
 }
