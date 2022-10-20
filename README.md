@@ -1,4 +1,6 @@
-We seek to examine the following concepts by going through the following tasks:
+# alx-low_level_programming
+
+**We seek to examine the following concepts by going through the following tasks:**
 
 - Why C programming is awesome
 - Who invented C
