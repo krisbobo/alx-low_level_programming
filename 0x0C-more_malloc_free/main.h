@@ -9,3 +9,4 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 int _length(char *str);
 int check_number(char *str);
 int error_exit(void);
+void multiply(char *s1, char *s2);
