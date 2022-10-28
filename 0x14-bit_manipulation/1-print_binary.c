@@ -1,47 +1,51 @@
 #include "main.h"
 
 /**
- * _pow_recursion - function that returns the value of x
- * raised to the power of y
- * @x: base number
- * @y: pow number
- * Return: int
- */
-
-int _pow_recursion(int x, int y)
+ * _length - find the length of @n
+ *
+ * @n: value to find its length
+ *
+ * Return: length
+*/
+int _length(unsigned long int n)
 {
-	if (y < 0)
-		return (-1);
-	if (y == 0)
-		return (1);
-	return (x * _pow_recursion(x, y - 1));
+	int length = 0;
+
+	while (n > 0)
+	{
+		length++;
+		n >>= 1; /*shift n to the right by 1*/
+	}
+
+	length--;
+
+	return (length);
 }
 
 /**
- * print_binary - function that prints the binary representation of a number
- * @n: decimal number
+ * print_binary - a function that converts a decimal to binary
+ *
+ * @n: decimal number to convert
+ *
  * Return: nothing
- */
-
+*/
 void print_binary(unsigned long int n)
 {
-	unsigned int res_pow = 0;
-	int exp = 10;
-	int flag = 0;
+	int length;
+	unsigned long int mask = 1;
 
-	if (n == 0)
-		_putchar('0');
-	while (exp >= 0)
+	length = _length(n);
+
+	if (length > 0) /*create mask based on length of number*/
+		mask <<= length; /*shift mask to the left by length*/
+
+	while (mask > 0)
 	{
-		res_pow = _pow_recursion(2, exp);
-		if (n >= res_pow)
-		{
+		if (n & mask) /*if n & mask == 1 print 1*/
 			_putchar('1');
-			n -= res_pow;
-			flag = 1;
-		}
-		else if (n < res_pow && flag == 1)
+		else /*else if n & mask == 0 print 0*/
 			_putchar('0');
-		exp--;
+
+		mask >>= 1; /*shift mask to the right by 1*/
 	}
 }
